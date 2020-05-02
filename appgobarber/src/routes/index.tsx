@@ -19,8 +19,3 @@ const AuthRoutes: React.FC = () => (
 );
 
 export default AuthRoutes;
-
-// headerTintColor: '#fff',
-// headerTitleAlign: 'center',
-// headerStyle: { backgroundColor: '#e0990c' },
-// cardStyle: { backgroundColor: '#312e38' },
