@@ -1,21 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
-
+import { Container } from './style';
 
 const CreateAppontment: React.FC = () => {
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        padding: 60,
-      }}
-    />
-
-  );
+  return <Container />;
 };
 
 export default CreateAppontment;
-
