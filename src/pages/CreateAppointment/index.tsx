@@ -1,4 +1,5 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import { format } from 'date-fns';
 import { Platform } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Feather';
@@ -55,6 +56,30 @@ const CreateAppontment: React.FC = () => {
   const [selectedProvider, setSelectedProvider] = useState(
     routeParams.provider_id,
   );
+
+  const morningAvailability = useMemo(() => {
+    return availability
+      .filter(({ hour }) => hour < 12)
+      .map(({ hour, available }) => {
+        return {
+          hour,
+          available,
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
+        };
+      });
+  }, [availability]);
+
+  const afternoonAvailability = useMemo(() => {
+    return availability
+      .filter(({ hour }) => hour >= 12)
+      .map(({ hour, available }) => {
+        return {
+          hour,
+          available,
+          hourFormatted: format(new Date().setHours(hour), 'HH:00'),
+        };
+      });
+  }, [availability]);
 
   useEffect(() => {
     api.get('providers').then((response) => {
@@ -150,6 +175,13 @@ const CreateAppontment: React.FC = () => {
           />
         )}
       </Calendar>
+
+      {morningAvailability.map(({ hourFormatted }) => (
+        <Title>{hourFormatted}</Title>
+      ))}
+      {afternoonAvailability.map(({ hourFormatted }) => (
+        <Title>{hourFormatted}</Title>
+      ))}
     </Container>
   );
 };
