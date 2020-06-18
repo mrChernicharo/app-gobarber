@@ -236,11 +236,11 @@ const CreateAppontment: React.FC = () => {
                 </Hour>
               ))}
             </SectionContent>
-
-            <SectionTitle>Tarde</SectionTitle>
           </Section>
 
           <Section>
+            <SectionTitle>Tarde</SectionTitle>
+
             <SectionContent>
               {afternoonAvailability.map(
                 ({ hourFormatted, hour, available }) => (
