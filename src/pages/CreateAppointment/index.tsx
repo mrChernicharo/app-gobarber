@@ -84,9 +84,7 @@ const CreateAppontment: React.FC = () => {
       })
       .then((response) => {
         setAvailability(response.data);
-        console.log(response.data);
       });
-    console.log(selectedDate);
   }, [selectedDate, selectedProvider]);
 
   const navigateBack = useCallback(() => {
@@ -114,7 +112,6 @@ const CreateAppontment: React.FC = () => {
   );
 
   const handleSelectHour = useCallback((hour: number) => {
-    console.log(hour);
     setSelectedHour(hour);
   }, []);
 

@@ -82,3 +82,9 @@ export const ProviderMetaText = styled.Text`
   color: #999591;
   font-family: 'RobotoSlab-Regular';
 `;
+
+export const BackButton = styled.TouchableOpacity`
+  width: 30px;
+  height: 24px;
+  margin-top: 16px;
+`;

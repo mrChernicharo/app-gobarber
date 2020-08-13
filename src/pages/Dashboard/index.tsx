@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Icon from 'react-native-vector-icons/Feather';
-import { View } from 'react-native';
 import { useAuth } from '../../hooks/auth';
 import { useNavigation } from '@react-navigation/native';
+
 import api from '../../services/api';
 
+import Icon from 'react-native-vector-icons/Feather';
 import {
   Container,
   Header,
@@ -20,6 +20,7 @@ import {
   ProviderName,
   ProviderMeta,
   ProviderMetaText,
+  BackButton,
 } from './styles';
 
 export interface Provider {
@@ -29,7 +30,7 @@ export interface Provider {
 }
 
 const Dashboard: React.FC = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const { navigate } = useNavigation();
 
   const [providers, setProviders] = useState<Provider[]>([]);
@@ -50,6 +51,10 @@ const Dashboard: React.FC = () => {
     },
     [navigate],
   );
+
+  const handleGoBack = useCallback(() => {
+    signOut();
+  }, []);
 
   return (
     <Container>
@@ -94,6 +99,10 @@ const Dashboard: React.FC = () => {
           </ProviderContainer>
         )}
       />
+
+      <BackButton onPress={handleGoBack}>
+        <Icon name="chevron-left" size={24} color="#999591" />
+      </BackButton>
     </Container>
   );
 };
